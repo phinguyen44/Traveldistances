@@ -17,15 +17,19 @@ shinyServer(function(input, output) {
     #define variables
     plotvars = subset(dist,dist$Season == yearchoose)[[variable]]
     plotvarsdesc = plotvars[order(-plotvars)]
+    teamdivs = subset(dist,dist$Season == yearchoose)[["Division"]]
+    teamdivsdesc = teamdivs[order(-plotvars)]
     namesofteams = subset(dist,dist$Season == yearchoose)[["Team"]]
     namesofteamsdesc = namesofteams[order(-plotvars)]
     meanplotvars = mean(plotvars)
-    topindex = which.max(plotvars)
-    topindexdesc = which.max(plotvarsdesc)
-    bottomindex = which.min(plotvars)
-    bottomindexdesc = which.min(plotvarsdesc)
-    colorcharts = ifelse(plotvars==plotvars[topindex], "#00637F", ifelse(plotvars==plotvars[bottomindex], "#B3EEFF", "grey"))
-    colorchartsdesc = ifelse(plotvarsdesc==plotvarsdesc[topindexdesc], "#00637F", ifelse(plotvarsdesc==plotvarsdesc[bottomindexdesc], "#B3EEFF", "grey"))
+    colorcharts = ifelse(teamdivs=="Pacific", "#B0E2FF", ifelse(teamdivs=="Central", "#003c80", ifelse(teamdivs=="Metropolitan", "#ffcccc", "#ca0000")))
+    colorchartsdesc = ifelse(teamdivsdesc=="Pacific", "#B0E2FF", ifelse(teamdivsdesc=="Central", "#003c80", ifelse(teamdivsdesc=="Metropolitan", "#ffcccc", "#ca0000")))
+    #topindex = which.max(plotvars)
+    #topindexdesc = which.max(plotvarsdesc)
+    #bottomindex = which.min(plotvars)
+    #bottomindexdesc = which.min(plotvarsdesc)
+    #colorcharts = ifelse(plotvars==plotvars[topindex], "#00637F", ifelse(plotvars==plotvars[bottomindex], "#B3EEFF", "grey"))
+    #colorchartsdesc = ifelse(plotvarsdesc==plotvarsdesc[topindexdesc], "#00637F", ifelse(plotvarsdesc==plotvarsdesc[bottomindexdesc], "#B3EEFF", "grey"))
     
     sortargs = switch(input$sortfxn,
                       "Team Name" = list(plotvars, namesofteams, colorcharts),

@@ -36,16 +36,20 @@ shinyUI(fluidPage(
         a("Phi Nguyen", href="http://www.phinguyen.co"), 
         "using data provided by ", 
         a("Dirk Hoag", href="https://twitter.com/forechecker"), 
-        style = "font-size: 7pt")),
+        style = "font-size: 7pt"),
+      p("* Files on", 
+        a("Github", href="https://github.com/phister/Traveldistances"), 
+        style = "font-size: 7pt")
+      ),
     
     mainPanel(
       plotOutput("bar", height = "500px"),
       br(),
       h4("Notes"),
       tags$ol(
-        tags$li("Data is ordered from highest to lowest."),
+        tags$li("Data is ordered by default from highest to lowest. Use the 'Sort By' dropdown to order by Team Name."),
         tags$li("The", strong(span("dotted red line", style="color:red")), "indicates the average value for that given year."), 
-        tags$li("The team(s) highlighted in", strong(span("teal", style="color:#00637F")), "has the highest value for the chosen year, while the team(s) in", strong(span("cyan", style="color:#B3EEFF")), "has the lowest value."),
+        tags$li("Teams are highlighted by their divisions. The color scheme is as follows:", strong(span("Pacific,", style="color:#B0E2FF")), strong(span("Central,", style="color:#003c80")), strong(span("Metropolitan,", style="color:#ffcccc")), strong(span("Atlantic.", style="color:#ca0000"))),
         tags$li("Data from the 2012-2013 NHL season is omitted due to the lockout.")
       )
     ),
